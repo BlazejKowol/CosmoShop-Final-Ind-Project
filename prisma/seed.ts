@@ -7,7 +7,7 @@ function getProducts() {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17256',
       mark: 'Resibo',
       title: 'Dream Cream',
-      image1: 'image.jpg',
+      image1: 'Resibo_krem.jpg',
       image2: 'image.jpg',
       image3: 'image.jpg',
       price: 89,
