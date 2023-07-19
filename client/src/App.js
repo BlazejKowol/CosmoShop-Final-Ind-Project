@@ -1,10 +1,22 @@
 import { Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { loadProductsRequest } from "./redux/productsReducer";
+import NavBar from "./components/layout/NavBar/NavBar";
+import Footer from "./components/layout/Footer/Footer";
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadProductsRequest())
+  }, [dispatch]);
+
   return (
     <Container>
-      <h1>Hello World, let's rock!</h1>
-      <img src='/logo192.png' alt='Bazar' />
+      <NavBar />
+      <Footer />
     </Container>
   )
 }
