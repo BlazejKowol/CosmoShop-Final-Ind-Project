@@ -2,8 +2,11 @@ import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadProductsRequest } from "./redux/productsReducer";
-import NavBar from "./components/layout/NavBar/NavBar";
+import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Home from "./components/views/Home/Home";
 
 const App = () => {
 
@@ -14,11 +17,17 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Container>
-      <NavBar />
+    <>
+      <Header />
+      <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes> 
       <Footer />
-    </Container>
+    </>
   )
 }
 
 export default App;
+
+
+// <Route path="*" element={<NotFound />} />
