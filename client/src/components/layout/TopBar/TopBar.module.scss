@@ -1,0 +1,26 @@
+@import '../../../styles/settings.scss';
+
+.main {
+    background: $color-primary; 
+    padding-inline: 100px;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    padding-block: 10px;
+}
+
+.text {
+    width: 10px;
+    margin-bottom: 0;
+}
+
+.p2 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.p3 {
+    text-align: end;
+    margin-bottom: 0;
+}

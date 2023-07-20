@@ -1,19 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import { Navbar, Col } from 'react-bootstrap';
+import styles from './NavBar.module.scss';
 
 const NavBar = () => {
 
     return (
         <>
-        <Navbar 
-            bg="white" 
-            collapseOnSelect
-            expand="lg"
-            className="mt-4 mb-4 rounded">
+        <Navbar collapseOnSelect expand="lg" className={styles.navbar}>
 
-                <Col><Nav.Link as={NavLink} to={"/"} className="text-info text-center h6 m-0">
-                    Cosmo Shop
+                <Col className={styles.logo}><Nav.Link as={NavLink} to={"/"}>
+                    Cosmo
+                    <p className={styles.smallLogo}>Shop</p>
                 </Nav.Link>
                 </Col>
 
