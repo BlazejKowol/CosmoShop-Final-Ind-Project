@@ -1,1 +1,22 @@
 @import '../../../styles/settings.scss';
+
+.navbar {
+    margin-block: 10px;
+    margin-inline: 100px;
+}
+
+.logo {
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+    letter-spacing: 10px;
+    
+    .smallLogo {
+        font-size: 15px;
+        margin-block: 0;
+    }
+}
+
+.icon {
+    font-size: 25px;
+}

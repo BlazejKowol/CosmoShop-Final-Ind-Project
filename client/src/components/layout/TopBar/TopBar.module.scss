@@ -1,5 +1,9 @@
 @import '../../../styles/settings.scss';
 
+.Row {
+ margin-left: 0; 
+}
+
 .main {
     background: $color-primary; 
     padding-inline: 100px;
@@ -8,6 +12,8 @@
     font-weight: bold;
     font-size: 11px;
     padding-block: 10px;
+    max-width: 100%;
+    margin-left: 0;
 }
 
 .text {

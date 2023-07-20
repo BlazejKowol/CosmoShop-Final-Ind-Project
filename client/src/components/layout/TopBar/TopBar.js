@@ -4,7 +4,8 @@ import styles from './TopBar.module.scss';
 const TopBar = () => {
 
     return (
-        <Row className={styles.main}>
+        <div className={styles.main}>
+        <Row >
 
             <Col className={styles.col}>
                 <Row className={styles.row}>
@@ -18,10 +19,11 @@ const TopBar = () => {
             </Col>
 
             <Col className={styles.col}>
-                <p className={styles.p2}>Darmowa dostawa!</p>
+                <p className={styles.p3}>Darmowa dostawa!</p>
             </Col>
 
         </Row>
+        </div>
     )
 }
 

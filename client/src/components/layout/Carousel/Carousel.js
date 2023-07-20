@@ -1,26 +1,27 @@
 import { UncontrolledCarousel } from 'reactstrap';
+import './Carousel.scss';
 
 const items = [
   {
     src: '/uploads/promo1.jpg',
     header: 'Sprawdź nasze produkty',
-    caption: 'Have fun with thousands of people!',
-    alt: 'Have fun with thousands of people!',
+    caption: 'Uznane marki w najlepszych cenach!',
+    alt: 'Sprawdź nasze produkty',
   },
   {
     src: '/uploads/promo2.jpg',
-    altText: 'Listen to the greatest hits!',
-    caption: 'Take a part in phenomenal performances.',
-    header: 'Listen to the greatest hits',
+    altText: 'Zadbaj o siebie',
+    caption: 'Produkty do twarzy -20%',
+    header: 'Zadbaj o siebie',
   },
   {
     src: '/uploads/promo3.jpg',
-    altText: 'Meet stars!',
-    caption: 'Meet the biggest music starts live!',
-    header: 'Meet stars!',
+    altText: 'Resibo!',
+    caption: 'Kremy, toniki, mydła',
+    header: 'Poznaj produkty marki Resibo',
   }
 ];
 
-const Carousel = () => <UncontrolledCarousel className="promoCarousel" items={items} />;
+const Carousel = () => <UncontrolledCarousel className="Carousel" items={items} />;
 
 export default Carousel;
