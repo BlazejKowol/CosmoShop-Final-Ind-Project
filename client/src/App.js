@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loadProductsRequest } from "./redux/productsReducer";
@@ -7,6 +6,9 @@ import Footer from "./components/layout/Footer/Footer";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Home from "./components/views/Home/Home";
+import Cart from "./components/views/Cart/Cart";
+import NotFound from "./components/views/NotFound/NotFound";
+import Copyright from "./components/layout/Copyright/Copyright";
 
 const App = () => {
 
@@ -21,6 +23,8 @@ const App = () => {
       <Header />
       <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
         </Routes> 
       <Footer />
     </>

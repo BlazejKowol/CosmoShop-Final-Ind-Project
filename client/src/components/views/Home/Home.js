@@ -11,10 +11,10 @@ const Home = () => {
     <>
     <Carousel />
     <section>
-        <div className="d-flex justify-content-between my-4">
-            <h1 className="h2">Sprawdź nasze produkty!</h1>
-                <ProductsGrid products={products} />
+        <div className="d-flex justify-content-center my-4">
+            <h1 className="h2">Bestsellery</h1>
         </div>
+        <ProductsGrid products={products} />
     </section>   
     </>
   );

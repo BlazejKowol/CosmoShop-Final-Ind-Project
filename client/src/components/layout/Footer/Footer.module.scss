@@ -1,9 +1,5 @@
 @import '../../../styles/settings.scss';
 
-.Row {
- margin-left: 0; 
-}
-
 .main {
     background: $color-primary; 
     padding-inline: 100px;
@@ -12,19 +8,14 @@
     padding-block: 10px;
     max-width: 100%;
     margin-left: 0;
+
+    h1 {
+        font-weight: bold;
+    }
+
+    p {
+        font-weight: lighter;
+    }  
 }
 
-.text {
-    width: 10px;
-    margin-bottom: 0;
-}
 
-.p2 {
-    text-align: center;
-    margin-bottom: 0;
-}
-
-.p3 {
-    text-align: end;
-    margin-bottom: 0;
-}

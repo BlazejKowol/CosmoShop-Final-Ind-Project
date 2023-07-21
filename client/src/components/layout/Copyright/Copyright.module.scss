@@ -1,0 +1,17 @@
+@import '../../../styles/settings.scss';
+
+.text {
+    text-align: end;
+    margin-block: 15px;
+    font-size: 10px;
+}
+
+.icon {
+    font-size: 15px;
+    margin-inline: 10px;
+    text-decoration: none;
+    color: $color-dark;
+    &:first-child {
+        padding-left: 120px;
+    }
+}

@@ -5,7 +5,7 @@ const TopBar = () => {
 
     return (
         <div className={styles.main}>
-        <Row >
+        <Row>
 
             <Col className={styles.col}>
                 <Row className={styles.row}>
