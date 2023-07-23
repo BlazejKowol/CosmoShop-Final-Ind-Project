@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Nav, Col, Button } from "react-bootstrap";
+import { Nav, Col } from "react-bootstrap";
 import { IMGS_URL } from "../../../config";
 import styles from './ProductSummary.module.scss';
 
@@ -12,7 +12,7 @@ const ProductSummary = ({id, mark, title, image1, price}) => {
       <div className={styles.photo}>
         <Nav.Link as={NavLink} to={"/product/" + id}>
           <div className={styles.image}>
-          <img className="photo" src={IMGS_URL + image1} alt="Product_photo" /> 
+            <img src={IMGS_URL + image1} alt="Product_photo" /> 
           </div>
         </Nav.Link>
       </div>

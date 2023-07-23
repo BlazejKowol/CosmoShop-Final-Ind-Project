@@ -8,7 +8,7 @@ import { Route } from "react-router-dom";
 import Home from "./components/views/Home/Home";
 import Cart from "./components/views/Cart/Cart";
 import NotFound from "./components/views/NotFound/NotFound";
-import Copyright from "./components/layout/Copyright/Copyright";
+import Product from "./components/views/Product/Product";
 
 const App = () => {
 
@@ -23,6 +23,7 @@ const App = () => {
       <Header />
       <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes> 

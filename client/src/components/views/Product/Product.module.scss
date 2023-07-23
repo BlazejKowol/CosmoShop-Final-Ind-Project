@@ -1,0 +1,85 @@
+@import '../../../styles/settings.scss';
+
+.container {
+    display: flex;
+    padding-inline: 100px;
+    margin: 60px 0;
+
+    .image {
+        background-color: $color-light;
+
+        img {
+            width: 600px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 1px solid $color-border;
+          }
+        }
+
+    .productDetail {
+        align-self: flex-start;
+        position: sticky;
+        top: 20px;
+        margin-bottom: 10px;
+
+        .basic {
+            margin: 30px 0;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        .title {
+            text-transform: none;
+            font-size: 20px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        .action {
+            margin-bottom: 20px;
+        }
+
+        .text {
+            text-transform: none;
+            font-size: 12px;
+
+            .column {
+                display: flex;
+                align-items: center;
+                margin-bottom: 5px;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            .icon {
+                margin-right: 8px;
+            }
+
+            .description {
+                text-transform: uppercase;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                border-top: 1px solid $color-border;
+                font-size: 16px;
+            }
+        }
+
+        .button {
+            cursor: pointer;
+            background-color: $color-second;
+            color: $color-light;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 1px;
+            text-transform: uppercase;
+          }
+    }
+}

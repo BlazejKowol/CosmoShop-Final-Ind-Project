@@ -10,7 +10,7 @@ const ProductsGrid = ({products}) => {
     <div className={styles.grid}>
     <Row>
       {products.map(prod =>
-        <Col lg={3} sm={6} xs={12} key={prod.id}>
+        <Col md={3} sm={6} xs={12} key={prod.id}>
             <ProductSummary {...prod} />
         </Col>
         )}
