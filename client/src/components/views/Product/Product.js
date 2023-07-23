@@ -7,11 +7,14 @@ import { IMGS_URL } from "../../../config";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle, faTruck, faArrowLeft } from '@fortawesome/fontawesome-free-solid'
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const Product = () => {
 
     const {id} = useParams();
     const product = useSelector(state => getProductsById(state, id));
+
+    const [amount, setAmount] = useState(1);
   
     return (
       <div key={id} className={styles.container}>
@@ -41,12 +44,16 @@ const Product = () => {
             </div>
 
             <Row className={styles.action}>
-            <button>
-                + -
-            </button>
-            <Nav.Link as={NavLink} to={"/cart"}>
-            <button className={styles.button} type="submit">Dodaj do koszyka</button>
-            </Nav.Link>
+                <Col lg={2} className={styles.col}>
+                    <button className={styles.buttonAmount}>-</button>
+                      {amount}
+                    <button className={styles.buttonAmount}>+</button>
+                </Col>
+                <Col lg={9} className="p-0">
+                    <Nav.Link as={NavLink} to={"/cart"}>
+                    <button className={styles.button} type="submit">Dodaj do koszyka</button>
+                    </Nav.Link>
+                </Col>
             </Row>
 
             <div className={styles.text}>

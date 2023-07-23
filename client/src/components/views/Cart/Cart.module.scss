@@ -1,0 +1,32 @@
+@import '../../../styles/settings.scss';
+
+.container {
+    padding-inline: 100px;
+    margin: 60px 0;
+
+    .header {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .button {
+        cursor: pointer;
+        background-color: $color-second;
+        color: $color-light;
+        border: none;
+        padding: 10px 20px;
+        width: 100%;
+        border-radius: 1px;
+        text-transform: uppercase;
+      }
+
+    .buttonAmount {
+        cursor: pointer;
+        background-color: $color-light;
+        padding: 8px;
+        border: none;
+        margin-inline: 5px;
+        font-size: 16px;
+      }
+}

@@ -41,7 +41,16 @@
         }
 
         .action {
-            margin-bottom: 20px;
+            margin: 0 0 20px 0;
+
+            .col {
+                padding: 0;
+                display: flex;
+                align-items: center;
+                border: 1px solid $color-border;
+                justify-content: center;
+                margin-right: 15px;
+            }
         }
 
         .text {
@@ -80,6 +89,15 @@
             width: 100%;
             border-radius: 1px;
             text-transform: uppercase;
+          }
+
+          .buttonAmount {
+            cursor: pointer;
+            background-color: $color-light;
+            padding: 8px;
+            border: none;
+            margin-inline: 5px;
+            font-size: 16px;
           }
     }
 }

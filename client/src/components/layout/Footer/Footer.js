@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <>
         <div className={styles.main}>
-        <Row >
+        <Row>
             
                 <Col lg={4}>
                     <h1>Informacje</h1>
