@@ -19,15 +19,22 @@ export const checkout = payload => ({ payload, type: CHECKOUT });
 
 /* INITIAL STATE */
 const initialState = {
-    data: [],
+    cartProducts: [],
   };
 
 /* REDUCER */
 
   const cartReducer = (statePart = initialState, action = {}) => {
     switch (action.type) {
-      case ADD_T0_CART: 
-        return { ...statePart, data: [...action.payload] };
+      case ADD_T0_CART:
+        if(statePart.cartProducts.find(product => product.id === action.payload.id)) {
+          return { ...statePart, cartProducts: statePart.cartProducts.map(product => 
+            product.id === action.payload.id
+            ? {...product, amount: product.amount} // not sure if good
+            : product) };
+        } else {
+          return {...statePart, cartProducts: [...statePart.cartProducts, {...action.payload, amount: 1}]};
+        }
       default:
         return statePart;
     }

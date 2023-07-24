@@ -1,20 +1,43 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getProductsById } from "../../../redux/productsReducer";
-import { Col, Row, Nav } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import styles from './Product.module.scss';
 import { IMGS_URL } from "../../../config";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle, faTruck, faArrowLeft } from '@fortawesome/fontawesome-free-solid'
-import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle, faTruck, faArrowLeft } from '@fortawesome/fontawesome-free-solid';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../../redux/cartReducer";
 
 const Product = () => {
 
     const {id} = useParams();
     const product = useSelector(state => getProductsById(state, id));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [amount, setAmount] = useState(1);
+    const totalPrice = product.price * amount;
+
+    const incrementAmount = () => {
+        if (amount < 10) {
+          setAmount(amount + 1);
+        }
+      };
+    
+      const decrementAmount = () => {
+        if (amount > 1) {
+          setAmount(amount - 1);
+        }
+      };
+
+      const handleAddToCart = e => {
+        e.preventDefault();
+        dispatch(addToCart({ id, mark: product.mark, title: product.title, image1: product.image1, price: totalPrice, amount: amount }));
+        navigate('/cart');
+    };
   
     return (
       <div key={id} className={styles.container}>
@@ -45,14 +68,14 @@ const Product = () => {
 
             <Row className={styles.action}>
                 <Col lg={2} className={styles.col}>
-                    <button className={styles.buttonAmount}>-</button>
+                    <button onClick={decrementAmount} className={styles.buttonAmount}>-</button>
                       {amount}
-                    <button className={styles.buttonAmount}>+</button>
+                    <button onClick={incrementAmount} className={styles.buttonAmount}>+</button>
                 </Col>
                 <Col lg={9} className="p-0">
-                    <Nav.Link as={NavLink} to={"/cart"}>
-                    <button className={styles.button} type="submit">Dodaj do koszyka</button>
-                    </Nav.Link>
+                    <button onClick={handleAddToCart} className={styles.button}>
+                        Dodaj do koszyka
+                    </button>
                 </Col>
             </Row>
 
