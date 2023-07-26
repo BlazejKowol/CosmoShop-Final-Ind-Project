@@ -1,5 +1,8 @@
 /* SELECTORS */
-export const getCart = ({ cart }) => cart.data;
+  export const getAllCartProducts = ({cart, products}) => cart.cartProducts.map(cartProduct => ({...cartProduct, product: 
+  products.data.find(product => product.id === cartProduct.productId) }))
+
+  export const getTotal = ({ cart }) => cart.cartTotalPrice;
 
 // action name creator
 const reducerName = 'cart';
@@ -20,6 +23,7 @@ export const checkout = payload => ({ payload, type: CHECKOUT });
 /* INITIAL STATE */
 const initialState = {
     cartProducts: [],
+    cartTotalPrice: [],
   };
 
 /* REDUCER */
@@ -30,10 +34,35 @@ const initialState = {
         if(statePart.cartProducts.find(product => product.id === action.payload.id)) {
           return { ...statePart, cartProducts: statePart.cartProducts.map(product => 
             product.id === action.payload.id
-            ? {...product, amount: product.amount} // not sure if good
+            ? {...product, amount: product.amount + action.payload.amount}
             : product) };
         } else {
-          return {...statePart, cartProducts: [...statePart.cartProducts, {...action.payload, amount: 1}]};
+          return {...statePart, cartProducts: [...statePart.cartProducts, {...action.payload}]};
+        }
+        case REMOVE_FROM_CART: {
+          return {
+            ...statePart,
+            cartProducts: statePart.cartProducts.filter(product => 
+              product.id !== action.payload),
+          };
+        }
+        case UPDATE_CART: {
+          return {
+            ...statePart,
+            cartProducts: statePart.cartProducts.map(product =>
+              product.id === action.payload.id
+                ? {
+                    ...product,
+                    ...action.payload,
+                  }
+                : product
+            ),
+          };
+        }
+        case CHECKOUT: {
+          return {
+            ...statePart, cartProducts: [...statePart.cartProducts], cartTotalPrice: action.payload.cartTotalPrice
+          };
         }
       default:
         return statePart;
@@ -41,5 +70,8 @@ const initialState = {
   }
 
   export default cartReducer;
+
+  //...statePart, cartProducts: [...statePart.cartProducts], cartTotalPrice: action.payload.cartTotalPrice JEST OK ALE NIE WIEM JAK Z KOMENTARZEM BĘDZIE
+//  ...statePart, cartProducts: [...statePart.cartProducts], cartTotalPrice: action.payload też jest okej, wówczas jest to tablica - tak najlepiej chyba
   
 

@@ -3,10 +3,18 @@ import styles from './Order.module.scss';
 import Form from 'react-bootstrap/Form';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getAllCartProducts, getTotal } from "../../../redux/cartReducer";
 
 const Order = () => {
   
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
+
+    const cartProducts = useSelector(getAllCartProducts);
+    console.log('koszyk in Order', cartProducts);
+
+    const total = useSelector(getTotal)
+    console.log('total', total);
 
     const handleSubmit = () => {    }
 
@@ -104,7 +112,7 @@ const Order = () => {
                             Suma
                         </Col>
                         <Col lg={6}>
-                        Total Price zł 
+                        {total} zł 
                         </Col>
                     </Row>
                 </Col>

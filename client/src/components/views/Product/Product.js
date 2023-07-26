@@ -19,7 +19,7 @@ const Product = () => {
     const navigate = useNavigate();
 
     const [amount, setAmount] = useState(1);
-    const totalPrice = product.price * amount;
+    //const totalPrice = product.price * amount;
 
     const incrementAmount = () => {
         if (amount < 10) {
@@ -35,7 +35,7 @@ const Product = () => {
 
       const handleAddToCart = e => {
         e.preventDefault();
-        dispatch(addToCart({ id, mark: product.mark, title: product.title, image1: product.image1, price: totalPrice, amount: amount }));
+        dispatch(addToCart({ id, productId: id, amount: amount}))
         navigate('/cart');
     };
   
