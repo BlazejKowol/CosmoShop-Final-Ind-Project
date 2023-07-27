@@ -25,5 +25,72 @@
 
     .summary {
         border: 1px solid $color-border;
+        margin-bottom: 10px;
     }
+
+    .summaryCol {
+        align-items: center;
+        display: flex;
+        text-align: center;
+    }
+
+    .image {
+        background-color: $color-light;
+    
+        img {
+            width: 75px;
+            object-fit: cover;
+            margin-block: 7px;
+          }
+        }
+
+        .title {
+            font-size: 11px;
+            text-transform: none;
+        }
+
+        .mark {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .totalAmount {
+            margin-block: 25px;
+            align-items: center;
+
+            .infoPrice {
+                font-size: 18px;
+            }
+
+            .total {
+                display: flex;
+                justify-content: end;
+                font-weight: bold;
+                font-size: 40px;
+            }
+        }
+
+        .comment {
+            margin-block: 25px;
+            font-size: 12px;
+            justify-content: end;
+            display: flex;
+        }
+
+        .button {
+            cursor: pointer;
+            background-color: $color-second;
+            color: $color-light;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 1px;
+            text-transform: uppercase;
+    
+            &:hover {
+              background-color: $color-light;
+              color: $color-second;
+              border: 3px solid;
+            }
+          }
 }

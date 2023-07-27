@@ -5,8 +5,22 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getAllCartProducts, getComment, getTotalPrice } from "../../../redux/cartReducer";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { purchaseRequest } from "../../../redux/ordersReducer";
+import { IMGS_URL } from "../../../config";
 
 const Order = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [address, setAddress] = useState('');
+    const [code, setCode] = useState('');
+    const [city, setCity] = useState('');
   
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
@@ -14,25 +28,40 @@ const Order = () => {
     const total = useSelector(getTotalPrice)
     const comment = useSelector(getComment)
 
-    const handleSubmit = () => {    }
+    const handleSubmit = () => {
+        dispatch(purchaseRequest({cartProducts: cartProducts, total: total, comment: comment}));
+        navigate("/");
+        }
 
     return (
     <div className={styles.container}>
 
         <Form className={styles.form} onSubmit={validate(handleSubmit)}>
 
-            <Col className={styles.formCol} lg={8}>
+            <Col className={styles.formCol} lg={7}>
                 <h3>Dane Kontaktowe</h3>
                 
                 <Row>
+                    <Col lg={12}>
+                        <Form.Label>e-mail*</Form.Label>
+                        <Form.Control 
+                        {...register("email", { required: true, minLength: 3, maxLength: 50 })}  
+                        className={styles.address} 
+                        value={email} 
+                        type="text" 
+                        onChange={e => setEmail(e.target.value)} 
+                        />
+                        {errors.email && <small className="d-block form-text text-danger mt-2">Uzupełnij swój adres e-mail</small>}
+                    </Col>
+
                     <Col lg={4}>
                         <Form.Label>Imię*</Form.Label>
                         <Form.Control 
                         {...register("name", { required: true, minLength: 3, maxLength: 25 })} 
                         className="mb-3 w-100" 
-                        value={""} 
+                        value={name} 
                         type="text" 
-                        //onChange={e => setName(e.target.value)} 
+                        onChange={e => setName(e.target.value)} 
                         />
                         {errors.name && <small className="d-block form-text text-danger mt-2">Uzupełnij swoje imię</small>}
                     </Col>
@@ -42,9 +71,9 @@ const Order = () => {
                         <Form.Control 
                         {...register("surname", { required: true, minLength: 3, maxLength: 40 })} 
                         className="mb-3 w-75" 
-                        value={""}  
+                        value={surname}  
                         type="text" 
-                        //onChange={e => setSurname(e.target.value)} 
+                        onChange={e => setSurname(e.target.value)} 
                         />
                         {errors.surname && <small className="d-block form-text text-danger mt-2">Uzupełnij swoje nazwisko</small>}
                     </Col>
@@ -54,9 +83,9 @@ const Order = () => {
                 <Form.Control 
                 {...register("address", { required: true, minLength: 3, maxLength: 50 })} 
                 className={styles.address} 
-                value={""} 
+                value={address} 
                 type="text" 
-                //onChange={e => setAddress(e.target.value)} 
+                onChange={e => setAddress(e.target.value)} 
                 />
                 {errors.address && <small className="d-block form-text text-danger mt-2">Uzupełnij swój adres</small>}
 
@@ -67,9 +96,9 @@ const Order = () => {
                         <Form.Control 
                         {...register("code", { required: true, minLength: 3, maxLength: 8 })} 
                         className="mb-3 w-100" 
-                        value={""} 
+                        value={code} 
                         type="text" 
-                        //onChange={e => setCode(e.target.value)} 
+                        onChange={e => setCode(e.target.value)} 
                         />
                         {errors.code && <small className="d-block form-text text-danger mt-2">Uzupełnij kod pocztowy</small>}
                     </Col>
@@ -79,45 +108,61 @@ const Order = () => {
                         <Form.Control 
                         {...register("city", { required: true, minLength: 2, maxLength: 50 })} 
                         className="mb-3 w-75" 
-                        value={""} 
+                        value={city} 
                         type="text" 
-                        //onChange={e => setCity(e.target.value)} 
+                        onChange={e => setCity(e.target.value)} 
                         />
                         {errors.city && <small className="d-block form-text text-danger mt-2">Uzupełnij miasto</small>}    
                     </Col>
                 </Row>
             </Col>
 
-            <Col lg={4}>
+            <Col lg={5}>
                 <h3>Podsumowanie</h3>
-                <Col className={styles.summary} lg={12}>
-                    <Row> 
+                {cartProducts.map(prod => 
+                <Col key={prod.id} className={styles.summary} lg={12}>
+                    <Row className={styles.summaryCol}> 
                         <Col lg={3}>
-                            zdjęcie mapowanie!
+                            <div className={styles.image}>
+                                <img alt={prod.product.title} src={IMGS_URL + prod.product.image1} />
+                            </div>
                         </Col>
-                        <Col lg={6}>
-                            nazwa produktu
+                        <Col className={styles.title} lg={5}>
+                        <span className={styles.mark}>{prod.product.mark}</span>
+                            <br/>{prod.product.title}
                         </Col>
-                        <Col lg={3}>
-                            cena produktu
+                        <Col lg={2}>
+                            {prod.amount}
+                        </Col>
+                        <Col lg={2}>
+                            {prod.product.price * prod.amount} zł
                         </Col>
                     </Row>
                 </Col>
+                )}
+
+                {comment &&(<Row className={styles.comment}>
+                    <Col>
+                        Komentarz do zamówienia:
+                    </Col>
+                    <Col>
+                        {comment}
+                    </Col>
+                </Row>)}
 
                 <Col lg={12}>
-                    <Row>
-                        <Col lg={6}>
-                            Suma
+                    <Row className={styles.totalAmount}>
+                        <Col className={styles.infoPrice} lg={6}>
+                            Kwota zamówienia: 
                         </Col>
-                        <Col lg={6}>
+                        <Col className={styles.total} lg={6}>
                         {total} zł 
                         </Col>
                     </Row>
                 </Col>
 
-                <button type="submit" className="border border-none bg-primary rounded py-1 mt-1">
-                <p className="text-light m-0">Złóż zamówienie</p>
-                
+                <button type="submit" className={styles.button}>
+                    Złóż zamówienie
                 </button>
             </Col>
 
