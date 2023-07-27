@@ -8,6 +8,16 @@
         text-align: center;
         display: flex;
         justify-content: center;
+        margin-bottom: 50px;
+    }
+
+    .titles {
+      text-align: center;
+      align-items: center;
+      margin-bottom: 5px;
+      padding-top: 5px;
+      font-size: 14px;
+      border-top: 1px solid $color-border;
     }
 
     .button {
@@ -19,14 +29,16 @@
         width: 100%;
         border-radius: 1px;
         text-transform: uppercase;
+
+        &:hover {
+          background-color: $color-light;
+          color: $color-second;
+          border: 3px solid;
+        }
       }
 
-    .buttonAmount {
-        cursor: pointer;
-        background-color: $color-light;
-        padding: 8px;
-        border: none;
-        margin-inline: 5px;
-        font-size: 16px;
+      .price {
+        font-size: 30px;
+        font-weight: bold;
       }
 }

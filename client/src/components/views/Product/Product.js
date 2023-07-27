@@ -19,7 +19,6 @@ const Product = () => {
     const navigate = useNavigate();
 
     const [amount, setAmount] = useState(1);
-    //const totalPrice = product.price * amount;
 
     const incrementAmount = () => {
         if (amount < 10) {

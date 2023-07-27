@@ -19,20 +19,24 @@ const Cart = () => {
 
     const proceedToCheckout = (e) => {
         e.preventDefault();
-        dispatch(checkout({cartProducts: cartProducts, cartTotalPrice: cartTotalPrice, comment: setComment(e.target.value)})); // trzeba dodać totalCartPrice i comment
+        dispatch(checkout({cartProducts: cartProducts, cartTotalPrice: cartTotalPrice, comment: comment}));
         navigate('/order');
     }
 
-    //if(cartProducts.length === 0) return 'Cart is empty';
+    if(cartProducts.length === 0) return (
+    <div className={styles.container}>
+        <h1 className={styles.header}>Koszyk jest pusty. Dodaj coś!</h1>
+    </div>
+    );
 
     return (
     <div className={styles.container}>
         <h1 className={styles.header}>Twój Koszyk</h1>
             <div className={styles.productList}>
-                <Row className="text-center mb-2">
-                    <div className="col-6">Produkt</div>
-                    <div className="col-2">Cena jednostkowa</div>
-                    <div className="col-2">Ilość</div>
+                <Row className={styles.titles}>
+                    <Col lg={6}>Produkt</Col>
+                    <Col lg={2}>Cena jednostkowa</Col>
+                    <Col lg={2}>Ilość</Col>
                 </Row>  
 
                 {cartProducts.map(prod => 
@@ -49,20 +53,25 @@ const Cart = () => {
             </div>
 
         <Form onSubmit={proceedToCheckout}>
-            <Row className="border-top text-center pt-2">
-                <Col lg={9}>
+            <Row className="border-top text-center pt-2 align-items-center">
+                <Col lg={6} className="p-0 mt-2">
                     <Form.Control  
-                        className="mb-3 w-100"
+                        className="mb-3 w-75 align-items-center d-flex"
                         placeholder="Komentarz do zamówienia..."
                         value={comment} 
                         type="text" 
                         onChange={e => setComment(e.target.value)} 
                         />
                 </Col>
-                <Col lg={3}>
-                    Kwota zamówienia: {cartTotalPrice} zł
+                <Col lg={2} className="">
+                    <span>Do zapłaty: </span>
+                </Col>
+                <Col lg={2} className="">
+                    <span className={styles.price}>{cartTotalPrice} zł</span>
+                </Col>
+                <Col lg={2} className="pe-0">                
                     <button type="submit" className={styles.button}>
-                        Przejdź do zamówienia
+                        Przejdź dalej
                     </button>
                 </Col>     
             </Row>
@@ -73,5 +82,3 @@ const Cart = () => {
 }
 
 export default Cart;
-
-/// Zrobić z komentarza osbny komponent i przesłać go jako props?

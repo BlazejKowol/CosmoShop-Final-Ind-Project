@@ -2,7 +2,8 @@
   export const getAllCartProducts = ({cart, products}) => cart.cartProducts.map(cartProduct => ({...cartProduct, product: 
   products.data.find(product => product.id === cartProduct.productId) }))
 
-  export const getTotal = ({ cart }) => cart.cartTotalPrice;
+  export const getTotalPrice = ({ cart }) => cart.cartTotalPrice;
+  export const getComment = ({ cart }) => cart.comment;
 
 // action name creator
 const reducerName = 'cart';
@@ -24,6 +25,7 @@ export const checkout = payload => ({ payload, type: CHECKOUT });
 const initialState = {
     cartProducts: [],
     cartTotalPrice: [],
+    comment: '',
   };
 
 /* REDUCER */
@@ -61,7 +63,9 @@ const initialState = {
         }
         case CHECKOUT: {
           return {
-            ...statePart, cartProducts: [...statePart.cartProducts], cartTotalPrice: action.payload.cartTotalPrice
+            ...statePart, cartProducts: [...statePart.cartProducts], 
+            cartTotalPrice: action.payload.cartTotalPrice,
+            comment: action.payload.comment,
           };
         }
       default:
