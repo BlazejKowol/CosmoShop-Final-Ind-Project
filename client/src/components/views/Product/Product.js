@@ -37,6 +37,8 @@ const Product = () => {
         dispatch(addToCart({ id, productId: id, amount: amount}))
         navigate('/cart');
     };
+
+    if(!product) return <h1>Loading...</h1>
   
     return (
       <div key={id} className={styles.container}>
