@@ -84,7 +84,7 @@ function getProducts() {
       id: '01c7599d-318b-4b9f-baf7-66g6a936b4s1',
       mark: 'GoCranberry',
       title: 'Żurawinowa pianka do mycia twarzy, 100 g',
-      image1: 'Go1.jpg',
+      image1: 'GoCranberry1.jpg',
       image2: 'Go2.jpg',
       image3: 'Go3.jpg',
       price: 28,

@@ -36,7 +36,7 @@ const ProductSummary = ({id, mark, title, image1, price}) => {
       </div>
 
     </div>
-    </Col> 
+    </Col>
   );
 };
   
