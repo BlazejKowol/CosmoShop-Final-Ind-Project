@@ -7,6 +7,10 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.setGlobalPrefix('api');
   app.useStaticAssets(join(__dirname, '..', 'public'), {
@@ -17,8 +21,12 @@ async function bootstrap() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
-  await app.listen(process.env.PORT || 8000);
+  const server = await app.listen(process.env.PORT || 8000);
   console.log('Server is running on port 8000');
+
+  server.prependListener('request', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  });
 }
 
 bootstrap();

@@ -24,15 +24,27 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  orders Order[]
+  productsOnOrder ProductsOnOrder[]
+}
+
+model ProductsOnOrder {
+  product Product? @relation(fields: [productId], references: [id])
+  productId String
+  order Order @relation(fields: [orderId], references: [id])
+  orderId String
+  amount Int
+
+  @@id([productId, orderId])
 }
 
 model Order {
   id String @id @default(uuid())
-  product  Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
-  productId String?
-  client Client? @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  clientId String
+  products ProductsOnOrder[]
+  //products ProductsOnOrder? @relation(fields: [productId], references: [id])
+  //productId String
+  client Client[]
+  totalPrice Int
+  comment String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -40,11 +52,13 @@ model Order {
 
 model Client {
   id String @id @default(uuid())
-  email String @unique
+  email String
   name String
+  surname String
   address String
   code String
   city String
 
-  orders Order[]
+  order Order? @relation(fields: [orderId], references: [id])
+  orderId String?
 }

@@ -9,33 +9,33 @@ export class OrdersService {
 
   public getAll(): Promise<Order[]> {
     return this.prismaService.order.findMany({
-      include: { product: true, client: true },
+      //include: { product: true },
     });
   }
 
   public getById(id: Order['id']): Promise<Order | null> {
     return this.prismaService.order.findUnique({
       where: { id },
-      include: { product: true, client: true }
+      //include: { product: true}
     });
   }
 
   public async create(
-    orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>,
+    orderData,
   ): Promise<Order> {
-    const { clientId, productId, ...otherData } = orderData;
+    const { ...otherData } = orderData;
     try {
       return await this.prismaService.order.create({
         data: {
           ...otherData,
-          product: {
-            connect: { id: productId },
-          },
-          client: {
-            connect: { id: clientId },
+          products: {},
+          client: {},
+        },
+        include: { 
+          products: {
+            include: { product: true }
           },
         },
-        include: { product: true, client: true }
       });
     } catch (error) {
       if (error.code === 'P2025')

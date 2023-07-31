@@ -3,18 +3,23 @@ import {
   IsString,
   Length,
   IsUUID,
+  IsInt,
+  Min,
+  IsArray,
 } from 'class-validator';
 
 export class CreateOrderDTO {
   @IsNotEmpty()
-  @IsString()
-  @Length(10, 80)
-  @IsUUID()
-  productId: string;
+  //@IsString()
+  //@Length(10, 80)
+  //@IsUUID()
+  //@IsArray()
+  //productId: string; 
 
-  @IsNotEmpty()
+  @IsInt()
+  @Min(0)
+  totalPrice: number;
+
   @IsString()
-  @Length(10, 80)
-  @IsUUID()
-  clientId: string;
+  comment: string;
 }
