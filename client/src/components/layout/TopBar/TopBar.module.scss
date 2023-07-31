@@ -14,8 +14,12 @@
     margin-left: 0;
 }
 
-.text {
-    width: 10px;
+.p {
+    margin-bottom: 0;
+}
+
+.p1 {
+    text-align: center;
     margin-bottom: 0;
 }
 
@@ -27,4 +31,31 @@
 .p3 {
     text-align: end;
     margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+
+    .main {
+        font-size: 10px;
+    }
+
+    .p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .p1 {
+        text-align: center;
+        margin-block: 10px;
+    }
+
+    .p2 {
+        text-align: center;
+        margin-block: 10px;
+    }
+    
+    .p3 {
+        text-align: center;
+        margin-block: 10px;
+    }
 }

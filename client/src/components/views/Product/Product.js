@@ -41,7 +41,7 @@ const Product = () => {
     return (
       <div key={id} className={styles.container}>
         <Col lg={7} className={styles.one}>
-            <Col lg={7}>
+            <Col xs={12} lg={7}>
                 <div className={styles.image}>
                     <img src={IMGS_URL + product.image1} alt="Product1_photo" />
                 </div>

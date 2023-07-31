@@ -7,18 +7,19 @@ const TopBar = () => {
         <div className={styles.main}>
         <Row>
 
-            <Col className={styles.col}>
-                <Row className={styles.row}>
-                <Col className="col-5"><p className={styles.text}>cosmo@cosmetics.pl</p></Col>
-                <Col className="col-5"><p className={styles.text}>567890123</p></Col>
-                </Row>
+            <Col xs={12} sm={3} className={styles.col}>
+                <p className={styles.p}>Cosmo@cosmetics.pl</p>
             </Col>
 
-            <Col className={styles.col}>
+            <Col xs={12} sm={3} className={styles.col}>
+                <p className={styles.p1}>567890123</p>
+            </Col>
+
+            <Col xs={12} sm={3} className={styles.col}>
                 <p className={styles.p2}>Sprawdź naszą wyjątkową ofertę!</p>
             </Col>
 
-            <Col className={styles.col}>
+            <Col xs={12} sm={3} className={styles.col}>
                 <p className={styles.p3}>Darmowa dostawa!</p>
             </Col>
 

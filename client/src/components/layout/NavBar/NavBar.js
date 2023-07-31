@@ -8,16 +8,16 @@ import { faShoppingCart } from '@fortawesome/fontawesome-free-solid'
 const NavBar = () => {
 
     return (
-        <>
-        <Navbar collapseOnSelect expand="lg" className={styles.navbar}>
+        <Navbar className={styles.navbar}>
 
-                <Col className={styles.logo}><Nav.Link as={NavLink} to={"/"}>
+                <Col lg={12} className={styles.logo}><Nav.Link as={NavLink} to={"/"}>
                     Cosmo
                     <p className={styles.smallLogo}>Shop</p>
                 </Nav.Link>
                 </Col>
 
-                <Nav className="me-auto justify-content-end">
+                <div className={styles.cart}>
+                <Nav>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav.Link as={NavLink} to="/cart">
@@ -25,9 +25,8 @@ const NavBar = () => {
                         </Nav.Link>
                     </Navbar.Collapse>
                 </Nav>
-
+                </div>
         </Navbar>
-        </>
     )
 }
 

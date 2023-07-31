@@ -27,9 +27,29 @@
           font-size: 45px;
         }
       }
-
     }
-
-    
-  
   }
+
+  @media (max-width: 767px) {
+
+    .Carousel {
+    .carousel-item {
+      height: 300px;
+      img {
+        width: 50%;
+        height: 100%;
+      }
+
+      .carousel-caption {
+        display: block!important;
+        color: $color-dark;
+        font-size: 10px;
+        font-weight: bold;
+        h3 {
+          font-weight: bold;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

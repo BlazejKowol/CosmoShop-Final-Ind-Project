@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { getAllCartProducts, getComment, getTotalPrice } from "../../../redux/cartReducer";
+import { clearCart, getAllCartProducts, getComment, getTotalPrice } from "../../../redux/cartReducer";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { purchaseRequest } from "../../../redux/ordersReducer";
 import { IMGS_URL } from "../../../config";
+import { v4 as uuidv4 } from 'uuid';
 
 const Order = () => {
 
@@ -25,12 +26,20 @@ const Order = () => {
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
     const cartProducts = useSelector(getAllCartProducts);
-    const total = useSelector(getTotalPrice)
+    const totalPrice = useSelector(getTotalPrice)
     const comment = useSelector(getComment)
 
     const handleSubmit = () => {
-        dispatch(purchaseRequest({cartProducts: cartProducts, total: total, comment: comment}));
-        navigate("/");
+        dispatch(purchaseRequest({
+            products: cartProducts,
+            //productId: cartProducts.map(prod => prod.productId),
+            totalPrice: totalPrice, 
+            comment: comment,
+            client: {id: uuidv4(), email: email, name: name, surname: surname, address: address, code: code, city: city},
+            id: uuidv4(),
+        }));
+        dispatch(clearCart())
+        navigate("/thank-you-page");
         }
 
     return (
@@ -46,7 +55,7 @@ const Order = () => {
                         <Form.Label>e-mail*</Form.Label>
                         <Form.Control 
                         {...register("email", { required: true, minLength: 3, maxLength: 50 })}  
-                        className={styles.address} 
+                        className={styles.input} 
                         value={email} 
                         type="text" 
                         onChange={e => setEmail(e.target.value)} 
@@ -58,7 +67,7 @@ const Order = () => {
                         <Form.Label>Imię*</Form.Label>
                         <Form.Control 
                         {...register("name", { required: true, minLength: 3, maxLength: 25 })} 
-                        className="mb-3 w-100" 
+                        className={styles.inputShort} 
                         value={name} 
                         type="text" 
                         onChange={e => setName(e.target.value)} 
@@ -70,7 +79,7 @@ const Order = () => {
                         <Form.Label>Nazwisko*</Form.Label>
                         <Form.Control 
                         {...register("surname", { required: true, minLength: 3, maxLength: 40 })} 
-                        className="mb-3 w-75" 
+                        className={styles.inputLong} 
                         value={surname}  
                         type="text" 
                         onChange={e => setSurname(e.target.value)} 
@@ -82,7 +91,7 @@ const Order = () => {
                 <Form.Label>Adres*</Form.Label>
                 <Form.Control 
                 {...register("address", { required: true, minLength: 3, maxLength: 50 })} 
-                className={styles.address} 
+                className={styles.input} 
                 value={address} 
                 type="text" 
                 onChange={e => setAddress(e.target.value)} 
@@ -95,7 +104,7 @@ const Order = () => {
                         <Form.Label>Kod pocztowy*</Form.Label>
                         <Form.Control 
                         {...register("code", { required: true, minLength: 3, maxLength: 8 })} 
-                        className="mb-3 w-100" 
+                        className={styles.inputShort} 
                         value={code} 
                         type="text" 
                         onChange={e => setCode(e.target.value)} 
@@ -107,7 +116,7 @@ const Order = () => {
                         <Form.Label>Miasto*</Form.Label>
                         <Form.Control 
                         {...register("city", { required: true, minLength: 2, maxLength: 50 })} 
-                        className="mb-3 w-75" 
+                        className={styles.inputLong} 
                         value={city} 
                         type="text" 
                         onChange={e => setCity(e.target.value)} 
@@ -156,7 +165,7 @@ const Order = () => {
                             Kwota zamówienia: 
                         </Col>
                         <Col className={styles.total} lg={6}>
-                        {total} zł 
+                        {totalPrice} zł 
                         </Col>
                     </Row>
                 </Col>

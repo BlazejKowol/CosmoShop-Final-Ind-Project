@@ -101,3 +101,36 @@
           }
     }
 }
+
+@media (max-width: 1215px) {
+    .container {
+        .one {
+            display: flex;
+            flex-direction: column;
+            .image {
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                    margin-bottom: 15px;
+                    border: 1px solid $color-border;
+                }
+            }
+        }
+
+            .productDetail {
+                position: static;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+        }
+}
+
+@media (max-width: 750px) {
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -54,7 +54,7 @@ const Cart = () => {
 
         <Form onSubmit={proceedToCheckout}>
             <Row className="border-top text-center pt-2 align-items-center">
-                <Col lg={6} className="p-0 mt-2">
+                <Col lg={6} className={styles.input}>
                     <Form.Control  
                         className="mb-3 w-75 align-items-center d-flex"
                         placeholder="Komentarz do zamówienia..."

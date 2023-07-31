@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { API_URL } from '../config';
+import { clearCart } from './cartReducer';
 
 /* SELECTORS */
-export const getOrders= ({ orders }) => orders.data;
+export const getOrders= ({ data }) => data.orders;
 
 // action name creator
 const reducerName = 'orders';
@@ -24,14 +25,14 @@ export const purchase = payload => ({ payload, type: PURCHASE });
 
 /* THUNKS */
 
-export const purchaseRequest = () => {
+export const purchaseRequest = (order) => {
     return async dispatch => {
   
       dispatch(startRequest());
       try {
   
-        let res = await axios.post(`${API_URL}/${reducerName}`);
-        dispatch(purchase(res.data));
+        let res = await axios.post(`${API_URL}/${reducerName}`, order);
+        dispatch(purchase(res));
         dispatch(endRequest());
   
       } catch(e) {
@@ -44,7 +45,7 @@ export const purchaseRequest = () => {
   /* INITIAL STATE */
 
   const initialState = {
-    data: [],
+    orders: [],
     request: {
       pending: false,
       error: null,
@@ -57,7 +58,7 @@ export const purchaseRequest = () => {
 const ordersReducer = (statePart = initialState, action = {}) => {
     switch (action.type) {
       case PURCHASE: 
-        return { ...statePart, data: [...statePart.data, action.payload] }
+        return { ...statePart, orders: [...statePart.orders, action.payload] }
       case START_REQUEST:
         return { ...statePart, request: { pending: true, error: null, success: false } };
       case END_REQUEST:

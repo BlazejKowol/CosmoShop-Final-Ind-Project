@@ -10,6 +10,7 @@ import Cart from "./components/views/Cart/Cart";
 import NotFound from "./components/views/NotFound/NotFound";
 import Product from "./components/views/Product/Product";
 import Order from "./components/views/Order/Order";
+import ThankYouPage from "./components/views/ThankYouPage/ThankYouPage";
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
+          <Route path="/thank-you-page" element={<ThankYouPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes> 
       <Footer />

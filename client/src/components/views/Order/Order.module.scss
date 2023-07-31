@@ -15,11 +15,16 @@
     }
 
     .formCol {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 
-    .address {
-        width: 87%;
+    .input {
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+
+    .inputLong {
+        width: 85%;
         margin-bottom: 1rem;
     }
 
@@ -93,4 +98,47 @@
               border: 3px solid;
             }
           }
+}
+
+@media (max-width: 988px) {
+    .container {
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .input {
+            width: 50%;
+            margin-bottom: 2rem;
+            margin: 0 auto;
+        }
+
+        .inputLong {
+            width: 50%;
+            margin-bottom: 2rem;
+            margin: 0 auto;
+        }
+
+        .inputShort {
+            width: 50%;
+            margin-bottom: 2rem;
+            margin: 0 auto;
+        }
+
+        .formCol {
+            margin-bottom: 75px;
+        }
+
+        .totalAmount {
+            .total {
+                justify-content: center;
+            }
+        }
+
+        .button {
+            width: 50%;
+        }
+    }
 }

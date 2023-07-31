@@ -15,11 +15,13 @@ const ADD_T0_CART = createActionName('ADD_T0_CART');
 const UPDATE_CART = createActionName('UPDATE_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const CHECKOUT = createActionName('CHECKOUT');
+const CLEAR_CART = createActionName('CLEAR_CART');
 
 export const addToCart = payload => ({ payload, type: ADD_T0_CART });
 export const removeFromCart = payload => ({ payload, type: REMOVE_FROM_CART });
 export const updateCart = payload => ({ payload, type: UPDATE_CART });
 export const checkout = payload => ({ payload, type: CHECKOUT });
+export const clearCart = payload => ({payload, type: CLEAR_CART})
 
 /* INITIAL STATE */
 const initialState = {
@@ -68,14 +70,14 @@ const initialState = {
             comment: action.payload.comment,
           };
         }
+        case CLEAR_CART: {
+          return initialState;
+        }
       default:
         return statePart;
     }
   }
 
   export default cartReducer;
-
-  //...statePart, cartProducts: [...statePart.cartProducts], cartTotalPrice: action.payload.cartTotalPrice JEST OK ALE NIE WIEM JAK Z KOMENTARZEM BĘDZIE
-//  ...statePart, cartProducts: [...statePart.cartProducts], cartTotalPrice: action.payload też jest okej, wówczas jest to tablica - tak najlepiej chyba
   
 
