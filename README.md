@@ -1,6 +1,6 @@
 ## Title
 
-<h1>Cosmetic Shop<h1>
+Cosmetic Shop
 
 ## Description
 
